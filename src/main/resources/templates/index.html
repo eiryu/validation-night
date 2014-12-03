@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>問診票 | 記入</title>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>問診票</h1>
+        <form th:action="@{/register}" th:object="${userForm}" method="post" class="col-xs-6">
+
+            <!-- 上部にエラーを列挙する場合 -->
+<!--
+            <div th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}" th:text="${err}" class="text-danger">ちゃんと入力しろや。。</p>
+            </div>
+-->
+
+            <div class="form-group">
+                <label>名前</label>
+
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">名前アカン</p>
+                <input type="text" th:field="*{name}" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>性別</label>
+
+                <p th:if="${#fields.hasErrors('sex')}"  th:errors="*{sex}" class="text-danger">性別アカン</p>
+                <div>
+                    <input type="radio" id="sex-male"   th:field="*{sex}" th:value="${T(form.Sex).MALE}"  /><label for="sex-male"  >男性</label>
+                    <input type="radio" id="sex-female" th:field="*{sex}" th:value="${T(form.Sex).FEMALE}"/><label for="sex-female">女性</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>妊娠している</label>
+
+                <p th:if="${#fields.hasErrors('validPregnant')}" th:errors="*{validPregnant}" class="text-danger">男なのに妊娠しとるって言ってる。。</p>
+                <div>
+                    <input type="checkbox" id="pregnant" th:field="*{pregnant}"/><label for="pregnant">はい</label>
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="登録する"/>
+        </form>
+    </div>
+</body>
+</html>
