@@ -9,6 +9,5 @@ Java 6 or higher
 
 ## Run
 
-```
-./gradlew bootRun
-```
+1. ```./gradlew bootRun```
+1. access [http://localhost:8080/](http://localhost:8080/)
